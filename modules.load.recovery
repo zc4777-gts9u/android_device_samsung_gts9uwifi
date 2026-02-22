@@ -295,7 +295,7 @@ sm5714-charger.ko
 sm5714_fuelgauge.ko
 mfd_sm5714.ko
 ps5169.ko
-stm_ts_fts1b90a.ko
+goodix_ts_berlin.ko
 muic_sm5714.ko
 pdic_sm5714.ko
 stm32_pogo_v3.ko
