@@ -2,6 +2,9 @@
 ro.audio.monitorRotation=true
 
 camera.disable_zsl_mode=1
+vendor.camera.aux.packagelist=org.lineageos.aperture
+persist.vendor.camera.aux.packagelist=org.lineageos.aperture
+persist.vendor.camera.privapp.list=org.lineageos.aperture
 
 # Sdcard
 external_storage.casefold.enabled=1
@@ -11,7 +14,7 @@ ro.crypto.metadata_init_delete_all_keys.enabled=true
 
 # udfpsProps
 ro.vendor.fingerprint.type=udfps_optical
-ro.vendor.fingerprint.sensor_location=800|2374|80
+ro.vendor.fingerprint.sensor_location=924|2742|92
 ro.vendor.fingerprint.request_touch_event=true
 
 # surfaceflinger
@@ -39,4 +42,4 @@ ro.carrier=wifi-only
 sys.brightness.disable_gamma_conversion=true
 
 # Fingerprint
-ro.vendor.fingerprint.rectangular_sensor_location=721,2289,880,2448
+ro.vendor.fingerprint.rectangular_sensor_location=833,2644,1016,2827

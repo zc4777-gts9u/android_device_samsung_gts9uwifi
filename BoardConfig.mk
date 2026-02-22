@@ -10,16 +10,16 @@ include device/samsung/sm8550-common/BoardConfigCommon.mk
 # Tablet
 TARGET_IS_TABLET := true
 
-DEVICE_PATH := device/samsung/gts9wifi
+DEVICE_PATH := device/samsung/gts9uwifi
 
 # Assert
-TARGET_OTA_ASSERT_DEVICE := gts9wifi
+TARGET_OTA_ASSERT_DEVICE := gts9uwifi,gts9u
 
 # Display
 TARGET_SCREEN_DENSITY := 350
 
 # Kernel
-TARGET_KERNEL_CONFIG := gts9wifi_defconfig
+TARGET_KERNEL_CONFIG := gts9uwifi_defconfig
 
 # Kernel Modules
 BOARD_RECOVERY_RAMDISK_KERNEL_MODULES_LOAD := $(strip $(shell cat $(DEVICE_PATH)/modules.load.recovery))
@@ -55,7 +55,7 @@ TARGET_KERNEL_EXT_MODULES := \
     qcom/opensource/video-driver \
     qcom/opensource/graphics-kernel \
     qcom/opensource/wlan/platform \
-    qcom/opensource/wlan/qcacld-3.0/.qca6490 \
+    qcom/opensource/wlan/qcacld-3.0/.kiwi_v2 \
     qcom/opensource/bt-kernel
 
 # Properties

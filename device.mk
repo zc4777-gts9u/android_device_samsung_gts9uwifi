@@ -25,7 +25,7 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
 
 # Init
 PRODUCT_PACKAGES += \
-    init.gts9wifi.rc
+    init.gts9uwifi.rc
 
 # Namespaces
 PRODUCT_SOONG_NAMESPACES += \
@@ -40,7 +40,9 @@ DEVICE_PACKAGE_OVERLAYS += \
 PRODUCT_PACKAGES += \
     firmware_wlanmdsp.otaupdate_symlink \
     firmware_wlan_mac.bin_symlink \
-    firmware_WCNSS_qcom_cfg.ini_symlink
+    firmware_WCNSS_qcom_cfg.ini_symlink \
+    firmware_wlan_mac.bin_kiwi_v2_symlink \
+    firmware_WCNSS_qcom_cfg.ini_kiwi_v2_symlink
 
 # Samsung IDC files
 PRODUCT_COPY_FILES += \
@@ -56,10 +58,6 @@ PRODUCT_PACKAGES += \
    SPenActions \
    vendor.samsung.hardware.spen-service
 
-# Touch
-PRODUCT_PACKAGES += \
-    vendor.lineage.touch-service.samsung
-
 # Tablet core
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/tablet_core_hardware.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/tablet_core_hardware.xml
@@ -73,11 +71,11 @@ $(call soong_config_set,samsung_udfps,dim_layer_zorder,0x20000001u)
 $(call soong_config_set, qtidisplay, samsung_fingerprint, true)
 $(call soong_config_set, qtidisplay, udfps, true)
 $(call soong_config_set,surfaceflinger,udfps_lib,//hardware/samsung:libudfps_extension.samsung)
-$(call soong_config_set,samsungTouchVars,enableGloveMode,true)
-$(call soong_config_set,samsungTouchVars,enableHighTouchPollingRate,true)
+$(call soong_config_set,samsungTouchVars,enableGloveMode,false)
+$(call soong_config_set,samsungTouchVars,enableHighTouchPollingRate,false)
 $(call soong_config_set,samsungTouchVars,enableStylusMode,false)
 # Inherit from the common OEM chipset makefile.
 $(call inherit-product, device/samsung/sm8550-common/common.mk)
 
 # Inherit from the proprietary files makefile.
-$(call inherit-product, vendor/samsung/gts9wifi/gts9wifi-vendor.mk)
+$(call inherit-product, vendor/samsung/gts9uwifi/gts9uwifi-vendor.mk)
