@@ -93,18 +93,9 @@ on property:init.svc.vendor.power-hal-aidl=running
     chown system system /sys/class/sec/tsp2/cmd
     chmod 0660 /sys/class/sec/tsp2/cmd
 
-on property:init.svc.sec-sysinput-aidl=running
-    chown system system /sys/class/sec/tsp/cmd
-    chmod 0660 /sys/class/sec/tsp/cmd
-    chown system system /sys/class/sec/tsp1/cmd
-    chmod 0660 /sys/class/sec/tsp1/cmd
-    chown system system /sys/class/sec/tsp2/cmd
-    chmod 0660 /sys/class/sec/tsp2/cmd
-
 on property:init.svc.bootanim=stopped
-    # sysinput rc assigns tsp cmd nodes to system:radio; libperfmgr runs
-    # as root:system without CAP_DAC_OVERRIDE, so keep cmd writable by
-    # system group for DOUBLE_TAP_TO_WAKE aot_enable writes.
+    # Keep tsp cmd nodes writable by system for libperfmgr aot_enable writes
+    # (DOUBLE_TAP_TO_WAKE) without relying on vendor service ownership changes.
     chown system system /sys/class/sec/tsp/cmd
     chmod 0660 /sys/class/sec/tsp/cmd
     chown system system /sys/class/sec/tsp1/cmd
