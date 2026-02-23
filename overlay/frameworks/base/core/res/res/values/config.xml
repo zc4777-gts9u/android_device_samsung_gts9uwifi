@@ -5,6 +5,25 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
+    <!-- UDFPS sensor center/radius in pixels (x, y, r). Matches vendor sensor_location. -->
+    <integer-array name="config_udfps_sensor_props" translatable="false">
+        <item>924</item>
+        <item>2742</item>
+        <item>92</item>
+    </integer-array>
+
+    <!-- Explicitly no side/power-button FPS sensor on this device. -->
+    <array name="config_sfps_sensor_props" translatable="false" />
+
+    <integer name="config_selected_udfps_touch_detection" translatable="false">0</integer>
+
+    <!-- This device uses UDFPS, not power-button/side FPS. -->
+    <bool name="config_is_powerbutton_fps" translatable="false">false</bool>
+
+    <!-- Keep UDFPS available on keyguard/AOD by default. -->
+    <bool name="config_screen_off_udfps_enabled">true</bool>
+    <bool name="config_screen_off_udfps_default_on">true</bool>
+
     <!-- Minimum screen brightness setting allowed by power manager.
          -2 is invalid so setting will resort to int value specified above.
          Set this to 0.0 to allow screen to go to minimal brightness.
