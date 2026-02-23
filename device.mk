@@ -54,7 +54,9 @@ PRODUCT_PACKAGES += \
 
 # SamsungParts
 PRODUCT_PACKAGES += \
+   AdvancedDisplay \
    SamsungParts \
+   SamsungBiometrics \
    SPenActions \
    vendor.samsung.hardware.spen-service
 
