@@ -67,6 +67,17 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/powerhint.json:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint.json
 
+# FaceUnlock service
+PRODUCT_PACKAGES += \
+    FaceUnlock
+
+PRODUCT_SYSTEM_EXT_PROPERTIES += \
+    ro.face.sense_service=true \
+    ro.face.sense_service.camera_id=1
+
+PRODUCT_COPY_FILES += \
+    frameworks/native/data/etc/android.hardware.biometrics.face.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/android.hardware.biometrics.face.xml
+
 # FOD
 $(call soong_config_set,samsung_udfps,udfps_zorder,0x20000000u)
 $(call soong_config_set,samsung_udfps,dim_layer_zorder,0x20000001u)
