@@ -92,3 +92,5 @@ $(call inherit-product, device/samsung/sm8550-common/common.mk)
 
 # Inherit from the proprietary files makefile.
 $(call inherit-product, vendor/samsung/gts9uwifi/gts9uwifi-vendor.mk)
+
+$(call inherit-product, hardware/dolby/dolby.mk)
