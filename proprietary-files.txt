@@ -3,6 +3,8 @@
 # ACDB
 vendor/etc/audconf/OPEN/acdb_cal.acdb
 vendor/etc/audconf/OPEN/workspaceFileXml.qwsp
+vendor/etc/audconf/OPEN/acdb_cal.acdb:vendor/etc/acdbdata/kalama_mtp/acdb_cal.acdb
+vendor/etc/audconf/OPEN/workspaceFileXml.qwsp:vendor/etc/acdbdata/kalama_mtp/workspaceFileXml.qwsp
 
 # Audio
 vendor/lib64/hw/audio.primary.kalama.so
