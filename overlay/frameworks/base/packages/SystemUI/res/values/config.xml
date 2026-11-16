@@ -6,7 +6,15 @@
 <resources>
      <!-- Should we vibrate on an icon animation of the shelf. This should only be active if the
           vibrator is capable of subtle vibrations -->
-     <bool name="config_vibrateOnIconAnimation">true</bool>
+     <bool name="config_vibrateOnIconAnimation">false</bool>
      
      <color name="config_udfpsColor">#ffffffff</color>
+
+    <!-- Default Quick Settings tiles for a newly initialized user. -->
+    <string name="quick_settings_tiles_default" translatable="false">
+        internet,bt,dnd,cast,flashlight,airplane,rotation,wallet,alarm,controls,screenrecord,battery,custom(org.lineageos.dap/.DolbyTile)
+    </string>
+    <string name="quick_settings_tiles_default_split" translatable="false">
+        wifi,bt,cell,cast,dnd,wallet,airplane,rotation,flashlight,battery,alarm,controls,screenrecord,custom(org.lineageos.dap/.DolbyTile)
+    </string>
 </resources>

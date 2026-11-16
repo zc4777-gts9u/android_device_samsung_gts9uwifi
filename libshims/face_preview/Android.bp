@@ -1,0 +1,20 @@
+//
+// SPDX-License-Identifier: Apache-2.0
+//
+
+cc_library_shared {
+    name: "libgts9u_face_preview",
+    vendor: true,
+    compile_multilib: "64",
+    srcs: ["FacePreview.cpp"],
+    header_libs: ["libcutils_headers"],
+    shared_libs: [
+        "android.hardware.graphics.bufferqueue@1.0",
+        "android.hidl.token@1.0-utils",
+        "libbinder",
+        "libgui_vendor",
+        "libhidlbase",
+        "liblog",
+        "libutils",
+    ],
+}

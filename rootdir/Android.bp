@@ -11,3 +11,10 @@ prebuilt_etc {
     sub_dir: "init/hw",
     vendor: true,
 }
+
+prebuilt_etc {
+    name: "init.gts9uwifi.wifi.rc",
+    src: "etc/init.gts9uwifi.wifi.rc",
+    sub_dir: "init",
+    vendor: true,
+}

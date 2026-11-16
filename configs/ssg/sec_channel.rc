@@ -1,0 +1,3 @@
+# SM-X910 is Wi-Fi only. Keep the TrustZone channel and omit modem transport.
+tz_enable=1
+modem_enable=0

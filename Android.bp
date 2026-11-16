@@ -7,6 +7,13 @@ soong_namespace {
 }
 
 install_symlink {
+    name: "spen_firmware_early_symlink",
+    vendor: true,
+    installed_location: "firmware/early/wez01_gts9u.bin",
+    symlink_target: "/vendor/firmware/wez01_gts9u.bin",
+}
+
+install_symlink {
     name: "firmware_wlanmdsp.otaupdate_symlink",
     vendor: true,
     installed_location: "firmware/wlanmdsp.otaupdate",
@@ -39,4 +46,11 @@ install_symlink {
     vendor: true,
     installed_location: "firmware/wlan/qca_cld/kiwi_v2/WCNSS_qcom_cfg.ini",
     symlink_target: "/vendor/etc/wifi/kiwi_v2/WCNSS_qcom_cfg.ini",
+}
+
+// Share the device partition layout with the common vendor fstab module.
+filegroup {
+    name: "fstab.gts9uwifi.source",
+    srcs: ["init/fstab.qcom"],
+    visibility: ["//visibility:public"],
 }

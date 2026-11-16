@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+<resources>
+    <!-- CYG1 speaker STREAM_MUSIC reference at index 14, -3.5 dB in Q24. -->
+    <integer name="config_dolbySpeakerAuxGainQ24">11212950</integer>
+    <!-- Keep stream attenuation after Dolby on built-in speakers. -->
+    <bool name="config_dolbySpeakerPostVolume">true</bool>
+</resources>

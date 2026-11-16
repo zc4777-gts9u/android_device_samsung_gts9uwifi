@@ -67,7 +67,8 @@ on boot
     chmod 0664 /dev/cpuset/moderate/cgroup.procs
 
     write /proc/sys/vm/swappiness 130
-    write /sys/class/lcd/panel/mask_brightness 319
+    # Optical fingerprint level: GTS9U panel table, 385 -> 634 cd/m2.
+    write /sys/class/lcd/panel/mask_brightness 385
 
 on shutdown
 
@@ -93,7 +94,7 @@ on property:init.svc.vendor.power-hal-aidl=running
     chown system system /sys/class/sec/tsp2/cmd
     chmod 0660 /sys/class/sec/tsp2/cmd
 
-on property:init.svc.bootanim=stopped
+on property:sys.boot_completed=1
     # Keep tsp cmd nodes writable by system for libperfmgr aot_enable writes
     # (DOUBLE_TAP_TO_WAKE) without relying on vendor service ownership changes.
     chown system system /sys/class/sec/tsp/cmd

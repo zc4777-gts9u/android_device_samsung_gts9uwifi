@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+<resources>
+    <dimen name="desktop_mode_app_handle_vertical_offset">8dp</dimen>
+    <!-- Keep the 100dp touch target. Visible widths: normal 40dp, hover 48dp, pressed 34dp. -->
+    <dimen name="desktop_mode_fullscreen_decor_caption_horizontal_padding_default">30dp</dimen>
+    <dimen name="desktop_mode_fullscreen_decor_caption_horizontal_padding_hovered">26dp</dimen>
+    <dimen name="desktop_mode_fullscreen_decor_caption_horizontal_padding_touched">33dp</dimen>
+</resources>

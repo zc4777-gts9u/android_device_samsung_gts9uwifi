@@ -43,3 +43,11 @@ sys.brightness.disable_gamma_conversion=true
 
 # Fingerprint
 ro.vendor.fingerprint.rectangular_sensor_location=833,2644,1016,2827
+
+# DC motor: 63 ms gives a 50 ms gesture effect at MEDIUM strength (0.8).
+ro.vendor.vibrator_hal.tick_duration=63
+ro.vendor.vibrator_hal.click_duration=63
+ro.vendor.vibrator_hal.texture_tick_duration=63
+
+# USB product descriptor
+vendor.usb.product_string=Galaxy Tab S9 Ultra

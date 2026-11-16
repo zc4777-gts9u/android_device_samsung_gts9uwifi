@@ -15,14 +15,12 @@ vendor/lib64/librecordalive.so
 # Audio configs
 vendor/etc/audio/sku_kalama/mixer_paths.xml
 vendor/etc/audio/sku_kalama/resourcemanager.xml
-# vendor/etc/dolby/dax-default.xml
 vendor/etc/situation_audio_policy_volumes_sec.xml
 vendor/etc/usecaseKvManager.xml
 
 # Audio FX modules
 vendor/lib64/soundfx/libaudiosaplus_sec.so
 vendor/lib64/soundfx/libsamsungSoundbooster_plus.so
-# vendor/lib64/soundfx/libswdap.so
 #vendor/lib64/soundfx/libswspatializer.so
 
 # SoundAlive
@@ -227,6 +225,13 @@ vendor/lib64/vendor.samsung.hardware.bluetooth.audio-V1-ndk.so
 vendor/lib64/vendor.samsung.hardware.bluetooth.audio-impl.so
 vendor/lib64/vendor.samsung.hardware.bluetooth@2.0.so
 
+# Face unlock
+vendor/bin/hw/vendor.samsung.hardware.biometrics.face-service|0254f446de6531c5cae33583052aa73f0c8c5246|2352010736b4a79791abcda2d5d2a2c67b3d1953
+vendor/etc/init/face-default-sec.rc|82cf75b5c985c093b6d2cce576c8498cc31732fe
+vendor/etc/vintf/manifest/face-default-sec.xml|df9a670be0245376a0e7765e725d75d7c2322a04
+vendor/lib64/libFaceService.so|d93cb6bc583341d281c02cdc077cc3f2d2a14280|d1e3446ec931e8680029ad225032e25ba7383eb9
+vendor/lib64/vendor.samsung.hardware.biometrics.face-V3-ndk.so|de3b334af240e07a6ace0ed31c008a305a1ab988
+
 # Fingerprint
 vendor/lib64/libsfp_sensor.so
 vendor/lib64/libqfp_sensortest.so
@@ -377,3 +382,13 @@ vendor/firmware/dax_param.bin
 # Stm32 keyboard
 vendor/firmware/keyboard_stm/stm32_gts9factory.bin
 vendor/firmware/keyboard_stm/stm32_gts9family.bin
+
+# Samsung Dolby Atmos
+vendor/etc/dolby/dax-default.xml
+vendor/lib64/soundfx/libswdap.so
+
+# Display (HDR backlight authorization)
+vendor/etc/hdr_samsung_mx.key
+
+# Time service shutdown persistence client
+vendor/bin/time_client

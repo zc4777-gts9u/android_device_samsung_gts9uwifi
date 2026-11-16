@@ -12,6 +12,9 @@ TARGET_IS_TABLET := true
 
 DEVICE_PATH := device/samsung/gts9uwifi
 
+# Use the same partition layout in recovery and normal boot.
+TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/init/fstab.qcom
+
 # Assert
 TARGET_OTA_ASSERT_DEVICE := gts9uwifi,gts9u
 
@@ -20,6 +23,12 @@ TARGET_SCREEN_DENSITY := 350
 
 # Kernel
 TARGET_KERNEL_CONFIG := gts9uwifi_defconfig
+# Limit nested kernel builds alongside Android compilation.
+TARGET_KERNEL_ADDITIONAL_FLAGS += -j8
+
+# Let the kernel read the S Pen firmware during I2C probe.
+BOARD_KERNEL_CMDLINE := $(filter-out firmware_class.path=%,$(BOARD_KERNEL_CMDLINE))
+BOARD_KERNEL_CMDLINE += firmware_class.path=/vendor/firmware_mnt/image,/vendor/firmware/early
 
 # Kernel Modules
 BOARD_RECOVERY_RAMDISK_KERNEL_MODULES_LOAD := $(strip $(shell cat $(DEVICE_PATH)/modules.load.recovery))
@@ -67,5 +76,6 @@ TARGET_USES_SAMSUNG_FINGERPRINT := true
 
 BOARD_RECOVERYIMAGE_PARTITION_SIZE := 104857600
 
-# SEPolicy (for bootanimation rotation)
+# SEPolicy
 PRODUCT_PRIVATE_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/private
+BOARD_VENDOR_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/vendor

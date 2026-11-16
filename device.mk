@@ -24,6 +24,10 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     ro.bootanim.set_orientation_logical_0=ORIENTATION_90
 
 # Init
+# This tablet has no vm-bootsys or bluetooth firmware partitions.
+SM8550_FSTAB := device/samsung/gts9uwifi/init/fstab.qcom
+$(call soong_config_set,samsung_sm8550_fstab,gts9uwifi,true)
+
 PRODUCT_PACKAGES += \
     init.gts9uwifi.rc
 
@@ -34,7 +38,26 @@ PRODUCT_SOONG_NAMESPACES += \
 # Overlay
 DEVICE_PACKAGE_OVERLAYS += \
     $(LOCAL_PATH)/overlay \
-    $(LOCAL_PATH)/overlay-lineage
+    $(LOCAL_PATH)/overlay-lineage \
+    $(LOCAL_PATH)/overlay-face-orientation
+
+# Activity orientations are read from the Settings APK when it is parsed.
+PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += $(LOCAL_PATH)/overlay-face-orientation
+
+# Samsung commercial device name
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/floating_feature.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/floating_feature.xml
+
+# Built-in display brightness and outdoor HBM
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/displayconfig/display_id_4630946478520245635.xml:$(TARGET_COPY_OUT_VENDOR)/etc/displayconfig/display_id_4630946478520245635.xml
+
+# Security service transport for this Wi-Fi-only tablet
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/ssg/sec_channel.rc:$(TARGET_COPY_OUT_VENDOR)/etc/sec_channel.rc
+
+# S Pen firmware lookup during I2C probe.
+PRODUCT_PACKAGES += spen_firmware_early_symlink
 
 # WiFi firmware symlinks
 PRODUCT_PACKAGES += \
@@ -54,9 +77,6 @@ PRODUCT_PACKAGES += \
 
 # SamsungParts
 PRODUCT_PACKAGES += \
-   AdvancedDisplay \
-   SamsungParts \
-   SamsungBiometrics \
    SPenActions \
    vendor.samsung.hardware.spen-service
 
@@ -67,21 +87,14 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/powerhint.json:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint.json
 
-# FaceUnlock service
-PRODUCT_PACKAGES += \
-    FaceUnlock
-
-PRODUCT_SYSTEM_EXT_PROPERTIES += \
-    ro.face.sense_service=true \
-    ro.face.sense_service.camera_id=1
-
+# Samsung's CYG1 face HAL uses the framework FaceService via IFace/default.
 PRODUCT_COPY_FILES += \
-    frameworks/native/data/etc/android.hardware.biometrics.face.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/android.hardware.biometrics.face.xml
+    frameworks/native/data/etc/android.hardware.biometrics.face.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.biometrics.face.xml
 
 # FOD
-$(call soong_config_set,samsung_udfps,udfps_zorder,0x20000000u)
-$(call soong_config_set,samsung_udfps,dim_layer_zorder,0x20000001u)
-$(call soong_config_set, qtidisplay, samsung_fingerprint, true)
+$(call soong_config_set,samsungUdfpsVars,udfps_zorder,0x20000000u)
+$(call soong_config_set,samsungUdfpsVars,dim_layer_zorder,0x20000001u)
+$(call soong_config_set,qtidisplay,samsung_udfps,true)
 $(call soong_config_set, qtidisplay, udfps, true)
 $(call soong_config_set,surfaceflinger,udfps_lib,//hardware/samsung:libudfps_extension.samsung)
 $(call soong_config_set,samsungTouchVars,enableGloveMode,false)
@@ -94,3 +107,9 @@ $(call inherit-product, device/samsung/sm8550-common/common.mk)
 $(call inherit-product, vendor/samsung/gts9uwifi/gts9uwifi-vendor.mk)
 
 $(call inherit-product, hardware/dolby/dolby.mk)
+PRODUCT_PACKAGES += SamsungDAP
+
+# Samsung Wi-Fi MAC provisioning before CNSS cold calibration.
+PRODUCT_PACKAGES += \
+    macloader \
+    init.gts9uwifi.wifi.rc

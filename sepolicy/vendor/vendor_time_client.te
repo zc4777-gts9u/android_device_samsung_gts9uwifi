@@ -1,0 +1,13 @@
+# SPDX-License-Identifier: Apache-2.0
+
+# One-shot shutdown helper; it only submits the current clock to time_daemon.
+type vendor_time_client, domain;
+type vendor_time_client_exec, exec_type, vendor_file_type, file_type;
+init_daemon_domain(vendor_time_client)
+
+allow vendor_time_client self:unix_stream_socket create_stream_socket_perms;
+allow vendor_time_client vendor_time_daemon:unix_stream_socket connectto;
+
+# time_daemon authenticates the client using /proc/<pid>/comm.
+allow vendor_time_daemon vendor_time_client:dir search;
+allow vendor_time_daemon vendor_time_client:file { open read };

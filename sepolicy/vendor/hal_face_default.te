@@ -1,0 +1,15 @@
+# Open the front camera through the vendor NDK camera client.
+allow hal_face_default fwk_camera_service:service_manager find;
+binder_call(hal_face_default, cameraserver)
+binder_call(cameraserver, hal_face_default)
+hal_client_domain(hal_face_default, hal_graphics_allocator)
+
+# Samsung's preview buffer-queue adapter uses the HIDL token manager.
+hwbinder_use(hal_face_default)
+allow hal_face_default hidl_token_hwservice:hwservice_manager find;
+
+# The CYG1 face engine uses the sec_fr trusted app from the firmware partition.
+r_dir_file(hal_face_default, firmware_file)
+allow hal_face_default tee_device:chr_file rw_file_perms;
+allow hal_face_default vendor_dmabuf_qseecom_heap_device:chr_file rw_file_perms;
+allow hal_face_default vendor_dmabuf_qseecom_ta_heap_device:chr_file rw_file_perms;

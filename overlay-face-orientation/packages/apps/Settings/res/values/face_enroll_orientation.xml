@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- ActivityInfo.SCREEN_ORIENTATION_FULL_USER. -->
+    <integer name="config_face_enroll_intro_orientation">13</integer>
+    <integer name="config_face_enroll_capture_orientation">13</integer>
+</resources>

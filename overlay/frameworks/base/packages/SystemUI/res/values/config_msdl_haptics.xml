@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- EFFECT_CLICK uses the existing vendor HAL calibration: MEDIUM is about 50 ms. -->
+    <integer name="config_msdlUnlockHapticEffect">0</integer>
+</resources>

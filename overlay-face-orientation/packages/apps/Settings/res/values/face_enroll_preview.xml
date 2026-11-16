@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- CYG1 face HAL's actual camera stream dimensions, before its sensor transform. -->
+    <integer name="face_preview_width">640</integer>
+    <integer name="face_preview_height">480</integer>
+</resources>
