@@ -106,14 +106,20 @@ $(call soong_config_set,surfaceflinger,udfps_lib,//hardware/samsung:libudfps_ext
 $(call soong_config_set,samsungTouchVars,enableGloveMode,false)
 $(call soong_config_set,samsungTouchVars,enableHighTouchPollingRate,false)
 $(call soong_config_set,samsungTouchVars,enableStylusMode,false)
+# Process the tablet speaker's PCM output in the vendor audio HAL.
+$(call soong_config_set_bool,android_hardware_audio,gts9u_speaker_dolby,true)
+SM8550_AUDIO_SPEAKER_ROUTE := device/samsung/gts9uwifi/audio/audio_policy_speaker_route.xml
+
 # Inherit from the common OEM chipset makefile.
 $(call inherit-product, device/samsung/sm8550-common/common.mk)
 
 # Inherit from the proprietary files makefile.
 $(call inherit-product, vendor/samsung/gts9uwifi/gts9uwifi-vendor.mk)
 
-$(call inherit-product, hardware/dolby/dolby.mk)
-PRODUCT_PACKAGES += SamsungDAP
+# Samsung Dolby speaker control and its audio app overrides.
+PRODUCT_PACKAGES += \
+    SamsungDAP \
+    Gts9uAudioPackageOverrides
 
 # Samsung Wi-Fi MAC provisioning before CNSS cold calibration.
 PRODUCT_PACKAGES += \
