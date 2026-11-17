@@ -19,6 +19,7 @@ bool setDolbyProfile(std::string_view value);
 struct SpeakerRoute {
     explicit SpeakerRoute(bool speaker) : isSpeaker(speaker) {}
     std::atomic<bool> isSpeaker;
+    std::atomic<float> mixVolume{-1.0f};
 };
 
 // Routing is maintained by the HAL's audio patches. The writer only reads its
@@ -49,12 +50,12 @@ class SpeakerDolby {
     SpeakerDolby& operator=(const SpeakerDolby&) = delete;
 
     bool configure(audio_format_t format, audio_channel_mask_t channels, uint32_t sampleRate);
-    void process(void* data, size_t bytes, bool routedToSpeaker);
+    void process(void* data, size_t bytes, bool routedToSpeaker, float mixVolume = 1.0f);
 
   private:
     static constexpr size_t kBlockFrames = 240;
     bool applyProfile(int profile);
-    void processBlock(uint8_t* data, size_t frames, bool fadingOut);
+    void processBlock(uint8_t* data, size_t frames, bool routedToSpeaker);
 
     audio_effect_library_t* mLibrary = nullptr;
     effect_handle_t mEffect = nullptr;
@@ -62,10 +63,15 @@ class SpeakerDolby {
     uint32_t mSampleRate = 0;
     uint32_t mAudioChannels = 0;
     size_t mFrameSize = 0;
-    uint32_t mFadeFrames = 0;
-    uint32_t mWetFrames = 0;
-    float mGain = 1.0f;
-    int mActiveProfile = -1;
+    float mMixVolume = 1.0f;
+    float mTargetVolume = 1.0f;
+    float mNotifiedVolume = -1.0f;
+    float mVolumeStep = 0.0f;
+    uint32_t mVolumeRampFrames = 0;
+    bool mVolumeReady = false;
+    std::array<float, kBlockFrames> mFrameVolume{};
+    bool mEffectEnabled = false;
+    bool mProcessing = false;
     int mRequestedProfile = -1;
     std::array<float, 2 * kBlockFrames> mDry{};
     std::array<float, 2 * kBlockFrames> mWet{};
