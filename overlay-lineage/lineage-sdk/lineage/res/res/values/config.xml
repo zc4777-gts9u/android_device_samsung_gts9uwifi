@@ -20,4 +20,13 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <!-- Lockscreen rotation default -->
     <bool name="config_lockScreenRotationEnabledByDefault">true</bool>
+    <!-- GTS9U has no MOVIE_MODE command table. Filter that unsupported menu entry. -->
+    <bool name="config_filterDisplayModes">true</bool>
+    <string-array name="config_displayModeMappings" translatable="false">
+        <item>Dynamic:Dynamic</item>
+        <item>Standard:Standard</item>
+        <item>Natural:Natural</item>
+        <item>Adaptive:Adaptive</item>
+        <item>Reading:Reading</item>
+    </string-array>
 </resources>
