@@ -1,3 +1,6 @@
 /vendor/bin/time_client u:object_r:vendor_time_client_exec:s0
 
 /vendor/bin/hw/vendor\.samsung\.hardware\.biometrics\.face-service u:object_r:hal_face_default_exec:s0
+
+# Grip wakeup sources: the I2C bus number depends on probe order.
+/sys/devices/platform/soc/8c0000\.qcom,qupv3_2_geni_se/88c000\.i2c/i2c-[0-9]+/[0-9]+-0020/wakeup(/.*)? u:object_r:sysfs_wakeup:s0

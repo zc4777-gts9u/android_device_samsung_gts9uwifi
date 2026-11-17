@@ -59,6 +59,12 @@ PRODUCT_COPY_FILES += \
 # S Pen firmware lookup during I2C probe.
 PRODUCT_PACKAGES += spen_firmware_early_symlink
 
+# Signed cfg80211 regulatory database from the AOSP wireless-regdb project.
+# Its signer is included in this kernel's built-in regulatory certificates.
+PRODUCT_COPY_FILES += \
+    external/wireless-regdb/regulatory.db:$(TARGET_COPY_OUT_VENDOR)/firmware/regulatory.db \
+    external/wireless-regdb/regulatory.db.p7s:$(TARGET_COPY_OUT_VENDOR)/firmware/regulatory.db.p7s
+
 # WiFi firmware symlinks
 PRODUCT_PACKAGES += \
     firmware_wlanmdsp.otaupdate_symlink \
