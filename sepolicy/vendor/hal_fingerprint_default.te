@@ -6,3 +6,7 @@ allow hal_fingerprint_default vendor_sysfs_fingerprint_mask:file rw_file_perms;
 
 # CYG1 fingerprint HAL must identify and access the Egis sensor device.
 allow hal_fingerprint_default vendor_egis_fingerprint_device:chr_file rw_file_perms;
+
+# Egis reads /sys/class/power_supply/battery/temp before capturing.
+allow hal_fingerprint_default sysfs_batteryinfo:dir search;
+allow hal_fingerprint_default vendor_sysfs_battery:file { getattr open read };

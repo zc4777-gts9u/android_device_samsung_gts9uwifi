@@ -61,6 +61,6 @@ ro.vendor.vibrator_hal.texture_tick_duration=63
 # USB product descriptor
 vendor.usb.product_string=Galaxy Tab S9 Ultra
 
-# Kernel optical mask and upstream first-capture brightness synchronization.
-ro.vendor.fingerprint.mask_control_path=/sys/class/lcd/panel/fp_green_circle
+# Use LineageOS illumination and keep first-capture brightness synchronization.
+# Leave the panel's extra green circle disabled.
 ro.vendor.fingerprint.mask_brightness_path=/sys/class/lcd/panel/mask_brightness
