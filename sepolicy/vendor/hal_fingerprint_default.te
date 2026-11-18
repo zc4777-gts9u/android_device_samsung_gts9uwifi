@@ -3,3 +3,6 @@ allow hal_fingerprint_default vendor_sysfs_display:dir search;
 allow hal_fingerprint_default vendor_sysfs_display:file r_file_perms;
 # Only the optical mask endpoint needs writes; avoid generic sysfs write access.
 allow hal_fingerprint_default vendor_sysfs_fingerprint_mask:file rw_file_perms;
+
+# CYG1 fingerprint HAL must identify and access the Egis sensor device.
+allow hal_fingerprint_default vendor_egis_fingerprint_device:chr_file rw_file_perms;

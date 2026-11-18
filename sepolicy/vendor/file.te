@@ -1,2 +1,5 @@
 # Kernel optical fingerprint mask control on SM-X910.
 type vendor_sysfs_fingerprint_mask, fs_type, sysfs_type;
+
+# Egis optical fingerprint character device on SM-X910.
+type vendor_egis_fingerprint_device, dev_type;

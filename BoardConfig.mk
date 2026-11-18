@@ -93,3 +93,8 @@ TARGET_PROVIDES_LIBAR_PAL := true
 BOOT_SECURITY_PATCH := 2025-08-01
 VENDOR_SECURITY_PATCH := $(BOOT_SECURITY_PATCH)
 $(call soong_config_set_bool,android_hardware_audio,run_64bit,true)
+
+# The common phone manifest declares Lineage touch interfaces that this tablet
+# does not implement. Remove them so capability checks never wait for a HAL
+# which cannot be started.
+DEVICE_MANIFEST_FILE += $(DEVICE_PATH)/configs/vintf/manifest_touch_disabled.xml

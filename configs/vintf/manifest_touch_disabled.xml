@@ -1,0 +1,7 @@
+<!-- The tablet provides no Lineage touch HAL; its touch and pen input use
+     the kernel input devices and the independent Samsung S Pen service. -->
+<manifest version="5.0" type="device">
+    <hal format="aidl" override="true">
+        <name>vendor.lineage.touch</name>
+    </hal>
+</manifest>

@@ -4,3 +4,6 @@
 
 # Grip wakeup sources: the I2C bus number depends on probe order.
 /sys/devices/platform/soc/8c0000\.qcom,qupv3_2_geni_se/88c000\.i2c/i2c-[0-9]+/[0-9]+-0020/wakeup(/.*)? u:object_r:sysfs_wakeup:s0
+
+# Egis fingerprint, separate from the common phone Goodix/QBT devices.
+/dev/esfp[0-9]+ u:object_r:vendor_egis_fingerprint_device:s0
