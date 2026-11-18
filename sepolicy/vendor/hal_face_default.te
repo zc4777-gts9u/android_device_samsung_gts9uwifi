@@ -16,3 +16,6 @@ allow hal_face_default vendor_dmabuf_qseecom_ta_heap_device:chr_file rw_file_per
 
 # The vendor camera client reads the framework camera configuration properties.
 get_prop(hal_face_default, camera_config_prop)
+
+# The Samsung recognizer creates its bk subdirectory under per-user facedata.
+allow hal_face_default face_vendor_data_file:dir create;

@@ -24,6 +24,9 @@
     <bool name="config_screen_off_udfps_enabled">true</bool>
     <bool name="config_screen_off_udfps_default_on">true</bool>
 
+    <!-- CYG1 face HAL validates the challenge before clearing the lockout counter. -->
+    <bool name="config_faceAidlResetLockoutRequiresChallenge">true</bool>
+
     <bool name="config_windowBrightnessUsesSystemSlider">true</bool>
 
     <!-- Let tablet users choose fullscreen for individual portrait apps. -->
