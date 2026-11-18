@@ -9,4 +9,13 @@
         <name>android.hardware.secure_element</name>
         <transport>hwbinder</transport>
     </hal>
+    <!-- CYG1's Wi-Fi-only manifest disables both IPA tether offload interfaces. -->
+    <hal format="hidl" override="true">
+        <name>android.hardware.tetheroffload.config</name>
+        <transport>hwbinder</transport>
+    </hal>
+    <hal format="hidl" override="true">
+        <name>android.hardware.tetheroffload.control</name>
+        <transport>hwbinder</transport>
+    </hal>
 </manifest>
