@@ -13,7 +13,7 @@ genfscon sysfs "/devices/platform/soc/9c0000.qcom,qupv3_i2c_geni_se/9a4000.i2c/i
 
 # Label the tablet's actual power-supply paths directly. More specific wakeup
 # labels below take precedence over the battery-control directory labels.
-genfscon sysfs "/devices/platform/soc/9c0000.qcom,qupv3_i2c_geni_se/98c000.i2c/i2c-56/56-0063/power_supply/sm5440-charger" u:object_r:sysfs_battery:s0
+genfscon sysfs "/devices/platform/soc/9c0000.qcom,qupv3_i2c_geni_se/98c000.i2c/i2c-56/56-0063/power_supply/sm5440-charger" u:object_r:vendor_sysfs_battery:s0
 genfscon sysfs "/devices/platform/soc/9c0000.qcom,qupv3_i2c_geni_se/98c000.i2c/i2c-56/56-0063/power_supply/sm5440-charger/wakeup" u:object_r:sysfs_wakeup:s0
 genfscon sysfs "/devices/platform/soc/9c0000.qcom,qupv3_i2c_geni_se/9a0000.i2c/i2c-58/58-0049/sm5714-charger/power_supply/sm5714-charger" u:object_r:vendor_sysfs_battery:s0
 genfscon sysfs "/devices/platform/soc/9c0000.qcom,qupv3_i2c_geni_se/9a0000.i2c/i2c-58/58-0049/sm5714-charger/power_supply/sm5714-otg" u:object_r:vendor_sysfs_battery:s0
