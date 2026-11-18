@@ -90,6 +90,11 @@ TARGET_2ND_CPU_VARIANT := generic
 TARGET_PROVIDES_AUDIO_HAL := true
 TARGET_PROVIDES_LIBAGM := true
 TARGET_PROVIDES_LIBAR_PAL := true
+# CYG1 registers the legacy PAL, AGM and sound-trigger services in its audio HAL.
+DEVICE_MANIFEST_FILE += \
+    hardware/qcom-caf/sm8550/audio/primary-hal/configs/common/manifest_non_qmaa.xml \
+    hardware/qcom-caf/sm8550/audio/primary-hal/configs/common/manifest_non_qmaa_extn.xml
+
 BOOT_SECURITY_PATCH := 2025-08-01
 VENDOR_SECURITY_PATCH := $(BOOT_SECURITY_PATCH)
 $(call soong_config_set_bool,android_hardware_audio,run_64bit,true)
