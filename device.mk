@@ -111,6 +111,9 @@ $(call soong_config_set_bool,android_hardware_audio,gts9u_speaker_dolby,true)
 SM8550_AUDIO_SPEAKER_ROUTE := device/samsung/gts9uwifi/audio/audio_policy_speaker_route.xml
 
 # Inherit from the common OEM chipset makefile.
+SM8550_AUDIO_EFFECTS_XML := device/samsung/gts9uwifi/audio/audio_effects.xml
+SM8550_AUDIO_POLICY_CONFIGURATION := device/samsung/gts9uwifi/audio/audio_policy_configuration.xml
+
 $(call inherit-product, device/samsung/sm8550-common/common.mk)
 
 # Inherit from the proprietary files makefile.
@@ -125,3 +128,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     macloader \
     init.gts9uwifi.wifi.rc
+
+# Legacy CYG1 clients still inspect the text effects configuration.
+PRODUCT_COPY_FILES += \
+    device/samsung/gts9uwifi/audio/audio_effects.conf:$(TARGET_COPY_OUT_VENDOR)/etc/audio/sku_kalama/audio_effects.conf

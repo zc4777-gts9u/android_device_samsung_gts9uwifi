@@ -79,3 +79,17 @@ BOARD_RECOVERYIMAGE_PARTITION_SIZE := 104857600
 # SEPolicy
 PRODUCT_PRIVATE_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/private
 BOARD_VENDOR_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/vendor
+
+# CYG1 tablet vendor userspace still includes 32-bit libraries and a proprietary
+# audio primary HAL. Keep those device constraints on the official common tree.
+TARGET_2ND_ARCH := arm
+TARGET_2ND_ARCH_VARIANT := armv7-a-neon
+TARGET_2ND_CPU_ABI := armeabi-v7a
+TARGET_2ND_CPU_ABI2 := armeabi
+TARGET_2ND_CPU_VARIANT := generic
+TARGET_PROVIDES_AUDIO_HAL := true
+TARGET_PROVIDES_LIBAGM := true
+TARGET_PROVIDES_LIBAR_PAL := true
+BOOT_SECURITY_PATCH := 2025-08-01
+VENDOR_SECURITY_PATCH := $(BOOT_SECURITY_PATCH)
+$(call soong_config_set_bool,android_hardware_audio,run_64bit,true)
