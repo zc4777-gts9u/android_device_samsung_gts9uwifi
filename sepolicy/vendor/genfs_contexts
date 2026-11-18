@@ -18,3 +18,6 @@ genfscon sysfs "/devices/platform/soc/9c0000.qcom,qupv3_i2c_geni_se/98c000.i2c/i
 genfscon sysfs "/devices/platform/soc/9c0000.qcom,qupv3_i2c_geni_se/9a0000.i2c/i2c-58/58-0049/sm5714-charger/power_supply/sm5714-charger" u:object_r:vendor_sysfs_battery:s0
 genfscon sysfs "/devices/platform/soc/9c0000.qcom,qupv3_i2c_geni_se/9a0000.i2c/i2c-58/58-0049/sm5714-charger/power_supply/sm5714-otg" u:object_r:vendor_sysfs_battery:s0
 genfscon sysfs "/devices/platform/soc/9c0000.qcom,qupv3_i2c_geni_se/9a0000.i2c/i2c-58/58-0049/sm5714-fuelgauge/power_supply/sm5714-fuelgauge" u:object_r:vendor_sysfs_battery:s0
+
+# Optical fingerprint mask controlled directly by the fingerprint HAL.
+genfscon sysfs /devices/virtual/lcd/panel/fp_green_circle u:object_r:vendor_sysfs_fingerprint_mask:s0

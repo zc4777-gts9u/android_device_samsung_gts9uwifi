@@ -1,0 +1,5 @@
+# Traverse the panel and read the upstream first-capture brightness signal.
+allow hal_fingerprint_default vendor_sysfs_display:dir search;
+allow hal_fingerprint_default vendor_sysfs_display:file r_file_perms;
+# Only the optical mask endpoint needs writes; avoid generic sysfs write access.
+allow hal_fingerprint_default vendor_sysfs_fingerprint_mask:file rw_file_perms;

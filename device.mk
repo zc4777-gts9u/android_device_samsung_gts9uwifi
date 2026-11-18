@@ -132,3 +132,8 @@ PRODUCT_PACKAGES += \
 # Legacy CYG1 clients still inspect the text effects configuration.
 PRODUCT_COPY_FILES += \
     device/samsung/gts9uwifi/audio/audio_effects.conf:$(TARGET_COPY_OUT_VENDOR)/etc/audio/sku_kalama/audio_effects.conf
+
+# Retain this tablet's cover settings and CYG1 Codec2 entry point.
+PRODUCT_PACKAGES += FlipFlap
+PRODUCT_COPY_FILES += \
+    device/samsung/gts9uwifi/configs/media/media_codecs.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs.xml
