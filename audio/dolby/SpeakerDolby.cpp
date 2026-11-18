@@ -205,14 +205,20 @@ void SpeakerDolby::process(void* data, size_t bytes, bool routedToSpeaker, float
 
     if (!std::isfinite(mixVolume)) return;
     mixVolume = std::clamp(mixVolume, 0.0f, 1.0f);
-    if (!mVolumeReady) {
-        mMixVolume = mixVolume;
-        mTargetVolume = mixVolume;
-        mVolumeReady = true;
-    } else if (mixVolume != mTargetVolume) {
-        mTargetVolume = mixVolume;
-        mVolumeRampFrames = std::max(1u, mSampleRate / 100);
-        mVolumeStep = (mTargetVolume - mMixVolume) / mVolumeRampFrames;
+    // The mixer can report zero before its queued PCM drains. Keep the last
+    // valid attenuation during that gap; AudioFlinger already applies mute.
+    if (mixVolume > 1.0e-6f) {
+        if (!mVolumeReady || mixVolume >= mMixVolume) {
+            // A louder track can already be in the current buffer.
+            mMixVolume = mixVolume;
+            mTargetVolume = mixVolume;
+            mVolumeRampFrames = 0;
+            mVolumeReady = true;
+        } else if (mixVolume != mTargetVolume) {
+            mTargetVolume = mixVolume;
+            mVolumeRampFrames = std::max(1u, mSampleRate / 100);
+            mVolumeStep = (mTargetVolume - mMixVolume) / mVolumeRampFrames;
+        }
     }
 
     const int profile = routedToSpeaker ? gProfile.load(std::memory_order_relaxed) : kDisabled;
@@ -224,7 +230,7 @@ void SpeakerDolby::process(void* data, size_t bytes, bool routedToSpeaker, float
         mMixVolume = mTargetVolume;
         mVolumeRampFrames = 0;
     }
-    if (mProcessing && mNotifiedVolume != mTargetVolume) {
+    if (mProcessing && mVolumeReady && mNotifiedVolume != mTargetVolume) {
         uint32_t volume[2] = {
                 static_cast<uint32_t>(std::lround(mTargetVolume * (1u << 24))),
                 static_cast<uint32_t>(std::lround(mTargetVolume * (1u << 24)))};
@@ -264,14 +270,19 @@ void SpeakerDolby::processBlock(uint8_t* data, size_t frames, bool routedToSpeak
         }
     }
 
-    // Restore the common mixer attenuation before Dolby. Reapply it
-    // after the stock processing, keeping relative track levels in the mix.
+    // The reference describes the loudest track, while this block can contain
+    // several tracks or older PCM still queued in FastMixer. Bound the input to
+    // the effect's float range and restore the same scale after processing.
+    float inputPeak = 0.0f;
+    for (size_t sample = 0; sample < frames * 2; ++sample) {
+        inputPeak = std::max(inputPeak, std::abs(mDry[sample]));
+    }
     for (size_t frame = 0; frame < frames; ++frame) {
         if (mVolumeRampFrames != 0) {
             mMixVolume += mVolumeStep;
             if (--mVolumeRampFrames == 0) mMixVolume = mTargetVolume;
         }
-        const float volume = std::clamp(mMixVolume, 0.0f, 1.0f);
+        const float volume = std::max(std::clamp(mMixVolume, 0.0f, 1.0f), inputPeak);
         mFrameVolume[frame] = volume;
         const float inverse = volume > 1.0e-6f ? 1.0f / volume : 0.0f;
         mDry[frame * 2] *= inverse;
