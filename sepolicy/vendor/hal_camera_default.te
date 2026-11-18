@@ -1,0 +1,2 @@
+# Traverse the secondary EFS mount to reach the camera calibration directories.
+allow hal_camera_default sec_efs_file:dir search;

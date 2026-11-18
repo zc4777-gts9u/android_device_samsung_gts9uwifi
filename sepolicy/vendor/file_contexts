@@ -7,3 +7,6 @@
 
 # Egis fingerprint, separate from the common phone Goodix/QBT devices.
 /dev/esfp[0-9]+ u:object_r:vendor_egis_fingerprint_device:s0
+
+# Goodix input numbers depend on probe order. Label only the libperfmgr switch.
+/sys/devices/platform/soc/ac0000\.qcom,qupv3_1_geni_se/a90000\.i2c/i2c-[0-9]+/[0-9]+-005d/input/input[0-9]+/enabled u:object_r:vendor_sysfs_touchscreen_writable:s0

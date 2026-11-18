@@ -4,4 +4,9 @@
     <hal format="aidl" override="true">
         <name>vendor.lineage.touch</name>
     </hal>
+    <!-- The Wi-Fi tablet has no embedded Secure Element. -->
+    <hal format="hidl" override="true">
+        <name>android.hardware.secure_element</name>
+        <transport>hwbinder</transport>
+    </hal>
 </manifest>

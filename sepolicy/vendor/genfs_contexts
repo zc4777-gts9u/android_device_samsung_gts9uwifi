@@ -21,3 +21,6 @@ genfscon sysfs "/devices/platform/soc/9c0000.qcom,qupv3_i2c_geni_se/9a0000.i2c/i
 
 # Optical fingerprint mask controlled directly by the fingerprint HAL.
 genfscon sysfs /devices/virtual/lcd/panel/fp_green_circle u:object_r:vendor_sysfs_fingerprint_mask:s0
+
+# Egis interrupt wakeup statistics consumed by system_suspend.
+genfscon sysfs "/devices/platform/soc/0.etspi,el7xx/wakeup" u:object_r:sysfs_wakeup:s0

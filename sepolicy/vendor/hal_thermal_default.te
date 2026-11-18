@@ -1,0 +1,2 @@
+# Traverse power_supply to reach already allowed vendor battery attributes.
+allow hal_thermal_default sysfs_batteryinfo:dir search;
