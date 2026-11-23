@@ -276,7 +276,11 @@ vendor/etc/sensors/config/kailua_ak991x_0.json
 vendor/etc/sensors/config/kailua_ak991x_5.json
 vendor/etc/sensors/config/kailua_default_sensors.json
 vendor/etc/sensors/config/kailua_lsm6dso_0_0.json
+vendor/etc/sensors/config/kailua_stk31610_0.json
+vendor/etc/sensors/config/kailua_stk31610_1.json
 vendor/etc/sensors/config/sns_diag_filter.json
+vendor/etc/sensors/config/stk31610_0.json
+vendor/etc/sensors/config/stk31610_1.json
 
 # Sensors
 vendor/bin/factory.ssc
