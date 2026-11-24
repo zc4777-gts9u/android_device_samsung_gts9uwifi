@@ -8,6 +8,11 @@
 # This must precede full_base -> runtime_libart.mk.
 OVERRIDE_DISABLE_DEXOPT_ALL := false
 
+# Keep this value while Make imports runtime_libart.mk as a separate product node.
+ifeq ($(TARGET_PRODUCT),lineage_gts9uwifi)
+override PRODUCT_ART_TARGET_INCLUDE_DEBUG_BUILD := false
+endif
+
 # Inherit from those products. Most specific first.
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base.mk)
