@@ -17,4 +17,6 @@
     <string name="quick_settings_tiles_default_split" translatable="false">
         wifi,bt,cell,cast,dnd,wallet,airplane,rotation,flashlight,battery,alarm,controls,screenrecord,custom(org.lineageos.dap/.DolbyTile)
     </string>
+    <!-- The panel has to complete its TCON power-on sequence before the reveal is visible. -->
+    <bool name="config_waitForScreenOnBeforePowerButtonReveal">true</bool>
 </resources>
