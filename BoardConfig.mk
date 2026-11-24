@@ -69,6 +69,7 @@ TARGET_KERNEL_EXT_MODULES := \
 
 # Properties
 TARGET_VENDOR_PROP += $(DEVICE_PATH)/vendor.prop
+TARGET_ODM_PROP += $(DEVICE_PATH)/odm.prop
 
 TARGET_USES_FOD_ZPOS := true
 TARGET_ADDITIONAL_GRALLOC_10_USAGE_BITS := 0x2000U | 0x400000000LL
@@ -78,6 +79,7 @@ BOARD_RECOVERYIMAGE_PARTITION_SIZE := 109576192
 
 # SEPolicy
 BOARD_VENDOR_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/vendor
+SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/private
 
 # CYG1 tablet vendor userspace still includes 32-bit libraries and a proprietary
 # audio primary HAL. Keep those device constraints on the official common tree.
