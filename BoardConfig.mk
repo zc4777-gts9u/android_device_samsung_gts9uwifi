@@ -77,7 +77,6 @@ TARGET_USES_SAMSUNG_FINGERPRINT := true
 BOARD_RECOVERYIMAGE_PARTITION_SIZE := 109576192
 
 # SEPolicy
-PRODUCT_PRIVATE_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/private
 BOARD_VENDOR_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/vendor
 
 # CYG1 tablet vendor userspace still includes 32-bit libraries and a proprietary
