@@ -31,6 +31,7 @@ debug.sf.disable_backpressure=1
 debug.mdpcomp.logs=0
 debug.sf.treat_170m_as_sRGB=1
 ro.surface_flinger.primary_display_orientation=ORIENTATION_270
+ro.surface_flinger.enable_sdr_dimming=true
 persist.sys.sf.color_saturation=1.0
 
 # gpu
