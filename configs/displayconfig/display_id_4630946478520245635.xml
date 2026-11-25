@@ -370,4 +370,6 @@
             </point>
         </sdrHdrRatioMap>
     </highBrightnessMode>
+    <!-- Smooth HDR-only transitions at a constant SDR white point. -->
+    <hdrOnlyBrightnessRampRate>0.14</hdrOnlyBrightnessRampRate>
 </displayConfiguration>
