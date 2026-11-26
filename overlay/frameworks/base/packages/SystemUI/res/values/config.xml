@@ -19,4 +19,6 @@
     </string>
     <!-- The panel has to complete its TCON power-on sequence before the reveal is visible. -->
     <bool name="config_waitForScreenOnBeforePowerButtonReveal">true</bool>
+    <!-- EFFECT_CLICK drives the DC motor once using the existing HAL calibration. -->
+    <integer name="config_volumeDialogKeyHapticEffect">0</integer>
 </resources>
